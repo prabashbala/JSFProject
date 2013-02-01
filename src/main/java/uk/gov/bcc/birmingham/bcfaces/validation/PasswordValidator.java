@@ -12,7 +12,9 @@ import javax.faces.validator.ValidatorException;
 @FacesValidator("passwordValidator")
 public class PasswordValidator implements Validator {
 
-	/**This is to vaidate the password against the predefined value which is 8080**/
+	/**This is to vaidate the password against the predefined value which is 8080
+	 * 
+	 * **/
 	@Override
 	public void validate(FacesContext context, UIComponent comp, Object values)
 			throws ValidatorException {
