@@ -10,35 +10,31 @@
 	<ui:define name="content">
 		<f:loadBundle basename="uk.gov.birmingham.bcfaces.messages"
 			var="resources" />
-		<h:form>
+		<h:form id="loginForm" name="loginForm">
 			<h:panelGrid columns="1">
-				<h:message showSummary="true" showDetail="false"
-					style="color: #d20005;
-                       font-family: 'New Century Schoolbook', serif;
-                       font-style: oblique;"
-					id="errors1" for="username" />
-				<h:message showSummary="true" showDetail="false"
-					style="color: #d20005;
-                       font-family: 'New Century Schoolbook', serif;
-                       font-style: oblique;"
-					id="errors2" for="password" />
+				<h:messages id="messages" infoClass="info" styleClass="messages"/>
 			</h:panelGrid>
-			<h:panelGrid columns="2">
+			<h:panelGrid columns="3">
 				<h:outputText value="Name"></h:outputText>
-				<h:inputText id="username" value="#{loginBean.name}" required="true"
+				<h:inputText id="username" label="User Name field" value="#{authenticationBean.name}" name="username"
+					required="true"
 					requiredMessage="#{resources['login.username.required']}"
 					validatorMessage="#{resources['login.username.invalidsize']}">
 					<f:validateLength minimum="5" maximum="10" />
 				</h:inputText>
+				<h:message id="errors1" name="errors1" showDetail="false"  showSummary="true" for="username" />
 				<h:outputText value="Password"></h:outputText>
-				<h:inputSecret id="password" value="#{loginBean.password}"
+				<h:inputSecret id="password" label="Password field" value="#{authenticationBean.password}"  
+					name="password"
 					required="true"
-					validatorMessage="#{resources['login.password.notmatch']}"
 					requiredMessage="#{resources['login.password.required']}"
-					validator="#{passwordValidator}">
+					validator="#{authenticationBean.validatePassword}"
+					validatorMessage="#{resources['login.password.notmatch']}">
 				</h:inputSecret>
+				<h:message id="errors2" name="errors2" for="password" />
 			</h:panelGrid>
-			<h:commandButton value="Login" action="#{loginBean.processLogin}"></h:commandButton>
+			<h:commandButton value="Login"
+				action="#{authenticationBean.processLogin}"></h:commandButton>
 		</h:form>
 	</ui:define>
 </ui:composition>
