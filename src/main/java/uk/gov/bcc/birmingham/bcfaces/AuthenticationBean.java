@@ -1,10 +1,6 @@
 package uk.gov.bcc.birmingham.bcfaces;
 
-import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
-import javax.faces.component.UIComponent;
-import javax.faces.context.FacesContext;
-import javax.faces.validator.ValidatorException;
 
 @ManagedBean
 public class AuthenticationBean {
@@ -44,20 +40,4 @@ public class AuthenticationBean {
 		return "welcomePage";
 	}
 	
-	public void validatePassword(FacesContext context, UIComponent comp, Object values)
-			throws ValidatorException {
-
-		String password = (String) values;
-
-		if (!password.equalsIgnoreCase("8080")) {
-			FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_ERROR,
-					"login.password.notmatch", "does not match");
-			context.addMessage(comp.getClientId(context), msg);
-			throw new ValidatorException(msg);
-		}
-
-	}
-	
-	
-
 }
