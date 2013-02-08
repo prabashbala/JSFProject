@@ -1,0 +1,8 @@
+.messages{
+	padding: 15px 10px 15px 50px;
+}
+
+ul.messages {
+    background: url('/JSFProject/images/icon-bim-error.gif') no-repeat left center;
+}
+
